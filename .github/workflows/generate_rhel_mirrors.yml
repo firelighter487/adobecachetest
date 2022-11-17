@@ -1,0 +1,31 @@
+name: "Generate RHEL Mirror List"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate_rhel_mirrors:
+    runs-on: ubuntu-latest
+    name: Generate RHEL Mirror List
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Fedora Mirror List
+        id: generate
+        run: .github/workflows/fedora.sh
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: Push to master branch
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: "master"
+          commit_message: "GitHub Actions build: ${{ steps.date.outputs.date }}"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
