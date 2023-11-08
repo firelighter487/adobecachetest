@@ -1,1 +1,3 @@
 swupdl.adobe.com
+cdn-sharing.adobecc.com
+cdn.cp.adobe.io
