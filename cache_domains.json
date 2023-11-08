@@ -6,6 +6,11 @@
 			"domain_files": ["adobe.txt"]
 		},
 		{
+			"name": "curseforge",
+			"description": "forge cache",
+			"domain_files": ["curseforge.txt"]
+		},
+		{
 			"name": "arch",
 			"description": "Arch Linux based repositories",
 			"domain_files": ["arch.txt"]
